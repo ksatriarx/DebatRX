@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naskah Debat – Tuhan Yang Esa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --card: #ffffff;
+      --ink: #1f2a24;
+      --muted: #5c6b63;
+      --accent: #2f6f4e;
+      --accent-soft: #e8f2ec;
+      --gold: #c9a227;
+      --gold-soft: #f8f1d8;
+      --border: #e6e0d4;
+      --shadow: 0 10px 30px rgba(31, 42, 36, 0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Source Sans 3", system-ui, sans-serif;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, #eef6f0 0%, transparent 55%),
+        radial-gradient(900px 500px at 100% 0%, #f7f0d8 0%, transparent 50%),
+        var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .divider {
+      width: 72px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--gold));
+      border-radius: 4px;
+      margin: 28px auto 0;
+    }
+
+    /* Intro card */
+    .intro {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      box-shadow: var(--shadow);
+      margin-bottom: 32px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .intro-icon {
+      flex-shrink: 0;
+      width: 52px;
+      height: 52px;
+      background: var(--gold-soft);
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+    }
+
+    .intro p {
+      font-size: 1.08rem;
+      color: var(--ink);
+    }
+
+    /* Section cards */
+    .section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 22px 28px;
+      background: linear-gradient(135deg, #f9fbf9 0%, #f4f7f5 100%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .num {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: var(--accent);
+      color: white;
+      font-weight: 700;
+      font-size: 1.15rem;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .section-header h2 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .section-body {
+      padding: 26px 28px 30px;
+    }
+
+    .section-body p {
+      margin-bottom: 14px;
+      color: var(--ink);
+    }
+
+    .section-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Bible quote */
+    .ayat {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 12px 12px 0;
+      padding: 16px 20px;
+      margin: 18px 0;
+      position: relative;
+    }
+
+    .ayat .ref {
+      display: block;
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
+    }
+
+    .ayat .text {
+      font-style: italic;
+      color: var(--ink);
+      font-size: 1.05rem;
+      line-height: 1.65;
+    }
+
+    /* Highlight box */
+    .highlight {
+      background: var(--gold-soft);
+      border: 1px solid #e8d48a;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 18px 0;
+      font-weight: 500;
+    }
+
+    .highlight strong {
+      color: #8a6d12;
+    }
+
+    /* Question style */
+    .question {
+      background: #f0f7f3;
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-weight: 600;
+      color: var(--accent);
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .question::before {
+      content: "?";
+      font-weight: 800;
+      font-size: 1.2rem;
+      line-height: 1.2;
+      color: var(--accent);
+      opacity: 0.7;
+    }
+
+    /* Closing */
+    .closing {
+      background: linear-gradient(145deg, #1f3d2f 0%, #2f6f4e 100%);
+      color: white;
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      text-align: center;
+      box-shadow: 0 16px 40px rgba(47, 111, 78, 0.25);
+      margin-top: 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .closing::before {
+      content: "";
+      position: absolute;
+      top: -40%;
+      right: -20%;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .closing h2 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.6rem;
+      margin-bottom: 18px;
+      position: relative;
+    }
+
+    .closing p {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      opacity: 0.95;
+      max-width: 560px;
+      margin: 0 auto 12px;
+      position: relative;
+    }
+
+    .closing .big-q {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 48px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .page { padding: 28px 14px 60px; }
+      .intro { flex-direction: column; padding: 22px; }
+      .section-header { padding: 18px 20px; }
+      .section-body { padding: 20px; }
+      .closing { padding: 28px 22px; }
+    }
+
+    /* Print */
+    @media print {
+      body { background: white; }
+      .section, .intro, .closing { box-shadow: none; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Header -->
+    <header>
+      <div class="badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+        Naskah Debat
+      </div>
+      <h1>Tuhan Yang Esa</h1>
+      <p class="subtitle">
+        Penjelasan berdasarkan Alkitab mengenai Allah Bapa, utusan-Nya, dan pengajaran tentang keesaan Tuhan
+      </p>
+      <div class="divider"></div>
+    </header>
+
+    <!-- Pembukaan -->
+    <div class="intro">
+      <div class="intro-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="2">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+        </svg>
+      </div>
+      <div>
+        <p><strong>Pembukaan</strong></p>
+        <p style="margin-top:6px">
+          Untuk menjelaskan ini, apabila kita menjelaskan sesuai yang tertulis di dalam Bible, ya, contohnya begini.
+        </p>
+      </div>
+    </div>
+
+    <!-- 1 -->
+    <article class="section">
+      <div class="section-header">
+        <div class="num">1</div>
+        <h2>Siapa Allah Bapa?</h2>
+      </div>
+      <div class="section-body">
+        <p>Di dalam 1 Timotius 6:16 itu dikatakan:</p>
+        <div class="ayat">
+          <span class="ref">1 Timotius 6:16</span>
+          <span class="text">
+            “Dialah satu-satunya yang tidak takluk kepada maut, bersemayam di dalam terang yang tak terhampiri. Tidak ada seorang pun yang dapat melihat Dia dan manusia pun tidak bisa melihat Dia.”
+          </span>
+        </div>
+        <p>Ini sosok <strong>Allah Bapa</strong>.</p>
+        <p>Nah, bagaimana kita bisa mengenal sosok Allah Bapa? Maka dijelaskan dalam Yohanes 1:18:</p>
+        <div class="ayat">
+          <span class="ref">Yohanes 1:18</span>
+          <span class="text">
+            “Tidak ada seorang pun yang dapat melihat Allah, melainkan Anak-Nya yang tunggal yang menyatakannya.”
+          </span>
+        </div>
+        <p>
+          Berarti maksud dan tujuan Yesus datang ke dunia itu, Dia mau mengatakan kepada Bani Israel bahwa Allah Bapa itu ada, namun tidak terlihat.
+        </p>
+        <p>Sehingga dalam narasi Yohanes 5:37, Yesus sendiri mengatakan:</p>
+        <div class="ayat">
+          <span class="ref">Yohanes 5:37</span>
+          <span class="text">
+            “Bapa yang mengutus Aku, Dialah yang bersaksi tentang Aku. Kamu tidak pernah mendengar suara-Nya, rupanya pun kau tidak pernah melihat.”
+          </span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2 -->
+    <article class="section">
+      <div class="section-header">
+        <div class="num">2</div>
+        <h2>Untuk apa Yesus diutus ke dunia?</h2>
+      </div>
+      <div class="section-body">
+        <div class="question">Untuk apa Yesus diutus ke dunia?</div>
+        <p>Itu dijelaskan dalam Yohanes 3:3-4. Siapa yang diutus oleh Allah, maka dia menyampaikan firman Allah.</p>
+        <div class="question">Apakah benar Yesus menyampaikan firman Allah?</div>
+        <p>Benar. Itu dijawab oleh Yohanes 17:8:</p>
+        <div class="ayat">
+          <span class="ref">Yohanes 17:8</span>
+          <span class="text">
+            “Sebab segala firman yang Engkau sampaikan kepadaku telah Aku sampaikan kepada mereka dan mereka telah menerimanya dan mereka benar-benar tahu bahwa Aku datang daripada-Mu dan mereka percaya bahwa Engkaulah yang telah mengutus Aku.”
+          </span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3 -->
+    <article class="section">
+      <div class="section-header">
+        <div class="num">3</div>
+        <h2>Apakah Yesus menerima firman dari Bapa?</h2>
+      </div>
+      <div class="section-body">
+        <div class="question">Apakah benar Yesus menyampaikan firman ini mendengar dari Bapaknya?</div>
+        <p>Benar. Dalilnya mana? Yohanes 15:15.</p>
+        <div class="ayat">
+          <span class="ref">Yohanes 15:15</span>
+          <span class="text">
+            “Apa yang Aku sampaikan, Aku mendengar dari Bapaku sendiri.”
+          </span>
+        </div>
+        <div class="question">Jadi pertanyaannya: Siapa Bapak itu?</div>
+        <p><strong>Tuhan Langit dan Bumi.</strong> Dalilnya mana? Matius 11:25.</p>
+        <div class="ayat">
+          <span class="ref">Matius 11:25</span>
+          <span class="text">
+            “Pada waktu itu berkatalah Yesus, Aku bersyukur kepada-Mu, Bapa, Tuhan Langit dan Bumi.”
+          </span>
+        </div>
+        <p>Yesus? Yesus. Bapa, Tuhan Langit dan Bumi itu Tuhan Aku dan Tuhan kamu juga. Itu ada di Yohanes 20:17:</p>
+        <div class="ayat">
+          <span class="ref">Yohanes 20:17</span>
+          <span class="text">
+            “Jangan dulu memegang Aku. Aku akan pergi kepada Bapaku dan Bapamu, kepada Allahku dan Allahmu.”
+          </span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 4 -->
+    <article class="section">
+      <div class="section-header">
+        <div class="num">4</div>
+        <h2>Siapa Allah yang disembah Yesus?</h2>
+      </div>
+      <div class="section-body">
+        <div class="question">Siapa Allah itu, Yesus?</div>
+        <div class="ayat">
+          <span class="ref">Lukas 4:8</span>
+          <span class="text">
+            “Tuhan. Sebab ada tertulis, Engkau harus menyembah Tuhan Allahmu dan hanya kepada Dialah saja engkau berbakti.”
+          </span>
+        </div>
+        <div class="highlight">
+          Jadi kalau kita mau telaah Alkitab kalian itu, itu sama pengajarannya:<br />
+          <strong>Musa · pengajaran Yesus · pengajaran Nabi Muhammad</strong> — sama.
+        </div>
+      </div>
+    </article>
+
+    <!-- 5 -->
+    <article class="section">
+      <div class="section-header">
+        <div class="num">5</div>
+        <h2>Pengajaran Musa tentang Tuhan Yang Esa</h2>
+      </div>
+      <div class="section-body">
+        <p>Tadi Bapa mengutip Ulangan 6:4:</p>
+        <div class="ayat">
+          <span class="ref">Ulangan 6:4</span>
+          <span class="text">
+            “Shema Israel, Adonai Eloheinu, Adonai Echad.”<br />
+            “Dengarlah, hai orang Israel, Tuhan Allah kita Tuhan itu Esa.”
+          </span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 6 -->
+    <article class="section">
+      <div class="section-header">
+        <div class="num">6</div>
+        <h2>Pengajaran Yesus tentang Tuhan Yang Esa</h2>
+      </div>
+      <div class="section-body">
+        <p>
+          Ketika Musa kembali kepada Tuhan, datang lagi Yesus di tengah-tengah Bani Israel.
+          Perkataan yang sama yang Yesus katakan dalam Markus 12:29:
+        </p>
+        <div class="ayat">
+          <span class="ref">Markus 12:29</span>
+          <span class="text">
+            “Dengarlah, hai orang Israel, hukum yang terutama ialah Tuhan Allah kita Tuhan itu Esa.”
+          </span>
+        </div>
+        <div class="highlight">
+          Jadi di sini kita melihat:<br />
+          <strong>Musa mengajarkan Tuhan itu Esa.</strong><br />
+          <strong>Yesus mengajarkan Tuhan itu Esa.</strong>
+        </div>
+      </div>
+    </article>
+
+    <!-- 7 -->
+    <article class="section">
+      <div class="section-header">
+        <div class="num">7</div>
+        <h2>Pengajaran Nabi Muhammad tentang Tuhan Yang Esa</h2>
+      </div>
+      <div class="section-body">
+        <p>
+          Ketika Yesus terangkat ke langit, maka datang lagi Nabi Muhammad shallallahu 'alaihi wasallam.
+          Maka dijelaskan dalam Al-Ikhlas ayat 1:
+        </p>
+        <div class="ayat">
+          <span class="ref">Al-Ikhlas 1</span>
+          <span class="text">
+            “Qul huwa Allahu ahad.”<br />
+            “Katakanlah Nabi Muhammad, Allah itu Esa.”
+          </span>
+        </div>
+        <div class="highlight">
+          Jadi pertanyaannya:<br />
+          Musa mengajarkan Tuhan yang Esa.<br />
+          Yesus mengajarkan Tuhan yang Esa.<br />
+          Nabi Muhammad mengajarkan Tuhan yang Esa.
+        </div>
+      </div>
+    </article>
+
+    <!-- Penutup -->
+    <div class="closing">
+      <h2>Pertanyaan Penutup</h2>
+      <p>Nah, bapak pendeta sama ibu pendeta:</p>
+      <p class="big-q">
+        Dapat pengajaran dari mana Tuhan tiga di dalam satu?<br />
+        Sama dari mana?
+      </p>
+    </div>
+
+    <footer>
+      Naskah Debat · Disusun berdasarkan ayat-ayat Alkitab
+    </footer>
+
+  </div>
+</body>
+</html>
